@@ -50,8 +50,8 @@ jobs:
 
       - name: Deploy to server
         run: |
-          ssh -o StrictHostKeyChecking=no user@192.168.x.x "mkdir -p ~/project"
-          scp -r ./* user@192.168.x.x:~/project/
+          ssh -o StrictHostKeyChecking=no baiel@192.168.1.100 "mkdir -p ~/project"
+          scp -r ./* baiel@192.168.1.100:~/project/
           ssh -o StrictHostKeyChecking=no user@192.168.x.x <<EOF
             cd ~/project
             python -m pip install --upgrade pip
