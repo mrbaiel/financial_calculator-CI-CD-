@@ -5,7 +5,7 @@ class FinancialCalculator:
 
     def add_income(self, amount, description="Доход"):
         if amount <= 0:
-            raise ValueError("Сумма дохода должна быть положительной.")
+            raise ValueError("Сумма дохода должна быть положительной!")
         self.transactions.append({"type": "доход", "amount": amount, "description": description})
         self.balance += amount
         return f"Доход на сумму {amount} руб. успешно добавлен!"
