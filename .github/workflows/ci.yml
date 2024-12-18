@@ -10,7 +10,7 @@ on:
 
 jobs:
   test:
-    runs-on: ubuntu-latest  # Используем Ubuntu для выполнения пайплайна
+    runs-on: ubuntu-22.04  # Используем стабильную версию Ubuntu 22.04
 
     steps:
       - name: Check out code
