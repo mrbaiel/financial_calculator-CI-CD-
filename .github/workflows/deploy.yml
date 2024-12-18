@@ -1,0 +1,28 @@
+deploy:
+  runs-on: ubuntu-22.04
+  needs: test  # Выполняется после успешного прохождения тестов
+
+  steps:
+    - name: Check out code
+      uses: actions/checkout@v2
+
+    - name: Deploy to server
+      env:
+        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+      run: |
+        # Настраиваем SSH-доступ
+        mkdir -p ~/.ssh
+        echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+
+        # Удаляем старую версию проекта и копируем новую
+        ssh -o StrictHostKeyChecking=no user@192.168.x.x "rm -rf ~/project && mkdir -p ~/project"
+        scp -r ./* user@192.168.x.x:~/project/
+
+        # Устанавливаем зависимости и обновляем код
+        ssh -o StrictHostKeyChecking=no user@192.168.x.x << 'EOF'
+          cd ~/project
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          echo "Deployment completed!"
+EOF
