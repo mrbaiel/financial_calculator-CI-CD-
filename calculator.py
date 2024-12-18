@@ -1,7 +1,7 @@
 class FinancialCalculator:
     def __init__(self):
-        self.transactions = []  # Список всех транзакций
-        self.balance = 0        # Текущий баланс
+        self.transactions = [] 
+        self.balance = 0        
 
     def add_income(self, amount, description="Доход"):
         if amount <= 0:
@@ -23,9 +23,10 @@ class FinancialCalculator:
         return f"Текущий баланс: {self.balance} руб."
 
     def get_transactions(self):
-        if not self.transactions:
-            return "Список транзакций пуст."
         result = "Список всех транзакций:\n"
         for transaction in self.transactions:
             result += f"- {transaction['type'].capitalize()}: {transaction['amount']} руб. ({transaction['description']})\n"
-        return result
+        return result 
+
+    def get_transactions_as_list(self): 
+        return self.transactions
