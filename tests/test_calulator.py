@@ -25,10 +25,11 @@ class TestFinancialCalculator(unittest.TestCase):
     def test_transactions(self):
         self.calculator.add_income(1000, "Salary")
         self.calculator.add_expense(500, "Groceries")
-        transactions = self.calculator.get_transactions()
+        transactions = self.calculator.get_transactions_as_list()  # Используем метод, возвращающий список
         self.assertEqual(len(transactions), 2)
         self.assertEqual(transactions[0]["description"], "Salary")
         self.assertEqual(transactions[1]["description"], "Groceries")
+
 
 if __name__ == "__main__":
     unittest.main()
